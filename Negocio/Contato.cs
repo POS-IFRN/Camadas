@@ -11,12 +11,15 @@ namespace Negocio
         public void Insert(Modelo.Contato c)
         {
             // Validar o contato
-            if (c.Nome != "")
+            List<Modelo.Contato> agenda = Select();
+            if (!agenda.Exists(a => a.Id == c.Id) && c.Nome != "")
             {
                 //&& c.Id != && c.Fone != ""
                 new Persistencia.Contato().Insert(c);
-            }
+            } 
         }
+            
+
 
         public List<Modelo.Contato> Select()
         {
